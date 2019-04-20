@@ -18,6 +18,13 @@ type Query {
         deleteComment(id: ID!): Comment!
     }
 
+    type Subscription {
+        count: Int!
+        comment(postId: ID!) : CommentSubscriptionPayload!
+        post: PostSubscriptionPayload!
+     
+    }
+
    
 
 
@@ -79,4 +86,20 @@ type Query {
         text: String!
         author: User!
         post: Post!
+    }
+
+   enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+    type PostSubscriptionPayload {
+        mutation: String!
+        data: Post!
+    }
+
+    type CommentSubscriptionPayload {
+        mutation: String!
+        data: Comment!  
     }
